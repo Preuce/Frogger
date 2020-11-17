@@ -53,7 +53,7 @@ public class Frog implements IFrog {
 		if(key == Direction.right){
 			this.position = new Case(this.position.absc+1, this.position.ord);
 		}
-		//game.testLose();
+		game.testLose();
 		//game.testWin();
 	}
 
