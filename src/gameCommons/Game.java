@@ -76,11 +76,10 @@ public class Game {
 	 * 
 	 * @return true si le partie est perdue
 	 */
-	public boolean testLose() { // apparemment un problème ici
+	public void testLose() { // apparemment un problème ici
 		if(!environment.isSafe(this.frog.getPosition())){
-			return true;
+			System.exit(0);
 		}
-		return false;
 	}
 
 	/**
@@ -89,11 +88,10 @@ public class Game {
 	 * 
 	 * @return true si la partie est gagn�e
 	 */
-	public boolean testWin() {
-		if(this.frog.getPosition().ord == this.height){
-			return true;
+	public void testWin() {
+		if(environment.isWinningPosition(this.frog.getPosition())){
+			System.exit(0);
 		}
-		return false;
 	}
 
 	/**
@@ -102,10 +100,9 @@ public class Game {
 	 */
 	public void update() {
 		graphic.clear();
-		environment.update();
+		environment.update(); //le probleme est la dedans
 		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
-		testLose(); //si y a un problème avec testlose c'est plutôt logique
+		testLose();
 		testWin();
 	}
-
 }

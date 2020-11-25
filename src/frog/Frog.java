@@ -38,19 +38,19 @@ public class Frog implements IFrog {
 	 * @param key
 	 */
 	public void move(Direction key){
-		if(key == Direction.up){
+		if(key == Direction.up && this.position.ord < game.height-1){
 			this.position = new Case(this.position.absc, this.position.ord+1);
 		}
 
-		if(key == Direction.down){
+		if(key == Direction.down && this.position.ord != 0){
 			this.position = new Case(this.position.absc, this.position.ord-1);
 		}
 
-		if(key == Direction.left){
+		if(key == Direction.left && this.position.absc != 0){
 			this.position = new Case(this.position.absc-1, this.position.ord);
 		}
 
-		if(key == Direction.right){
+		if(key == Direction.right && this.position.absc < game.width-1){
 			this.position = new Case(this.position.absc+1, this.position.ord);
 		}
 	}
