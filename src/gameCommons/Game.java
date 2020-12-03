@@ -16,13 +16,13 @@ public class Game {
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
 
-	// Lien aux objets utilis�s
+	// Lien aux objets utilisés
 	private IEnvironment environment;
 	private IFrog frog;
 	private IFroggerGraphics graphic;
 
 	/**
-	 * 
+	 *
 	 * @param graphic
 	 *            l'interface graphique
 	 * @param width
@@ -30,7 +30,7 @@ public class Game {
 	 * @param height
 	 *            hauteur en cases
 	 * @param minSpeedInTimerLoop
-	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
+	 *            Vitesse minimale, en nombre de tour de timer avant déplacement
 	 * @param defaultDensity
 	 *            densite de voiture utilisee par defaut pour les routes
 	 */
@@ -44,8 +44,8 @@ public class Game {
 	}
 
 	/**
-	 * Lie l'objet frog a la partie
-	 * 
+	 * Lie l'objet frog à la partie
+	 *
 	 * @param frog
 	 */
 	public void setFrog(IFrog frog) {
@@ -54,7 +54,7 @@ public class Game {
 
 	/**
 	 * Lie l'objet environment a la partie
-	 * 
+	 *
 	 * @param environment
 	 */
 	public void setEnvironment(IEnvironment environment) {
@@ -62,7 +62,7 @@ public class Game {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return l'interface graphique
 	 */
 	public IFroggerGraphics getGraphic() {
@@ -70,26 +70,36 @@ public class Game {
 	}
 
 	/**
-	 * Teste si la partie est perdue et lance un ecran de fin approprie si tel
+	 * Teste si la partie est perdue et lance un écran de fin approprié si tel
 	 * est le cas
-	 * 
+	 *
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		if(!environment.isSafe(this.frog.getPosition())){
+		if(!environment.isSafe(this.frog.getPosition())){ //si environment.... est faux
+			graphic.endGameScreen("T'es vraiment naze");
+			return true;
+		}
+		if(this.frog.getPosition().absc == this.width){
+			graphic.endGameScreen("WTF tu vas où ?");
+			return true;
+		}
+		if(this.frog.getPosition().absc == -1){
+			graphic.endGameScreen("WTF tu vas où ?");
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Teste si la partie est gagnee et lance un ecran de fin approprie si tel
+	 * Teste si la partie est gagnee et lance un écran de fin approprié si tel
 	 * est le cas
-	 * 
-	 * @return true si la partie est gagn�e
+	 *
+	 * @return true si la partie est gagnée
 	 */
 	public boolean testWin() {
-		if(this.frog.getPosition().ord == this.height){
+		if (environment.isWinningPosition(this.frog.getPosition())) {
+			graphic.endGameScreen("Crossy road monster");
 			return true;
 		}
 		return false;
