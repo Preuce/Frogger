@@ -34,13 +34,16 @@ public class Frog implements IFrog {
 		if(direction == Direction.up){
 			this.position = new Case(this.position.absc, this.position.ord+1);
 		}
-		if(direction == Direction.left){
+		//mouv possible si pas tout à gauche
+		if(direction == Direction.left && this.position.absc != 0){
 			this.position = new Case(this.position.absc-1, this.position.ord);
 		}
-		if(direction == Direction.right){
+		//mouv possible si pas tout à droite
+		if(direction == Direction.right && this.position.absc != game.width-1){
 			this.position = new Case( this.position.absc+1, this.position.ord);
 		}
-		if(direction == Direction.down){
+		//mouv possible si pas tout en bas
+		if(direction == Direction.down && this.position.ord != 0){
 			this.position = new Case( this.position.absc, this.position.ord-1);
 		}
 		game.testLose();

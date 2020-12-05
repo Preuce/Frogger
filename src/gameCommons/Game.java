@@ -80,14 +80,6 @@ public class Game {
 			graphic.endGameScreen("T'es vraiment naze");
 			return true;
 		}
-		if(this.frog.getPosition().absc == this.width){
-			graphic.endGameScreen("WTF tu vas où ?");
-			return true;
-		}
-		if(this.frog.getPosition().absc == -1){
-			graphic.endGameScreen("WTF tu vas où ?");
-			return true;
-		}
 		return false;
 	}
 
